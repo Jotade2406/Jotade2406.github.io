@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Juan Diego Salazar — Full-Stack Developer</title>
+<meta name="description" content="Full-Stack & Backend Developer — TypeScript, NestJS, React, React Native, ASP.NET Core. Building real-time, production-grade web and mobile apps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1020;
+    --bg-soft:#121933;
+    --card:#161e3d;
+    --ink:#e8ecf6;
+    --muted:#9aa6c4;
+    --accent:#4f9cff;
+    --accent2:#37e0c4;
+    --line:rgba(255,255,255,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:"Plus Jakarta Sans",-apple-system,Segoe UI,Roboto,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:rgba(11,16,32,.72);border-bottom:1px solid var(--line);
+  }
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-weight:800;font-size:18px;letter-spacing:.3px;}
+  .logo span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .nav-links{display:flex;gap:26px;font-size:14px;font-weight:500;}
+  .nav-links a{color:var(--muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  @media(max-width:680px){.nav-links{display:none;}}
+
+  /* HERO */
+  header.hero{position:relative;padding:96px 0 80px;overflow:hidden;}
+  .glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.35;z-index:0;}
+  .glow.a{width:480px;height:480px;background:var(--accent);top:-160px;right:-120px;}
+  .glow.b{width:420px;height:420px;background:var(--accent2);bottom:-180px;left:-140px;opacity:.22;}
+  .hero .wrap{position:relative;z-index:1;}
+  .badge{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--accent2);
+    border:1px solid var(--line);background:var(--bg-soft);padding:6px 14px;border-radius:999px;margin-bottom:22px;}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2);}
+  h1{font-size:clamp(34px,6vw,58px);line-height:1.05;font-weight:800;letter-spacing:-1px;}
+  h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .subtitle{font-size:clamp(17px,2.4vw,22px);color:var(--muted);margin-top:18px;max-width:640px;}
+  .cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:12px;font-weight:600;font-size:15px;transition:transform .15s,box-shadow .2s,background .2s;}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#06122b;box-shadow:0 8px 24px rgba(79,156,255,.3);}
+  .btn.primary:hover{transform:translateY(-2px);}
+  .btn.ghost{border:1px solid var(--line);background:var(--bg-soft);color:var(--ink);}
+  .btn.ghost:hover{border-color:var(--accent);transform:translateY(-2px);}
+
+  /* SECTION */
+  section{padding:72px 0;}
+  .eyebrow{color:var(--accent2);font-weight:600;font-size:13px;letter-spacing:2px;text-transform:uppercase;}
+  h2{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:-.5px;margin:8px 0 14px;}
+  .lead{color:var(--muted);max-width:680px;}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start;margin-top:30px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--muted);margin-bottom:14px;}
+  .about-grid p strong{color:var(--ink);}
+  .facts{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;}
+  .facts .row{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;}
+  .facts .row:last-child{border-bottom:none;}
+  .facts .row span:first-child{color:var(--muted);}
+  .facts .row span:last-child{font-weight:600;}
+
+  /* SKILLS */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:30px;}
+  .skill-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;transition:transform .2s,border-color .2s;}
+  .skill-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+  .skill-card h3{font-size:15px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .skill-card h3 .ic{font-size:18px;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag{font-size:12.5px;color:var(--ink);background:var(--bg-soft);border:1px solid var(--line);padding:5px 11px;border-radius:8px;}
+
+  /* PROJECTS */
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px;margin-top:30px;}
+  .pcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:transform .2s,border-color .2s;}
+  .pcard:hover{transform:translateY(-5px);border-color:var(--accent);}
+  .pcard.flag{border-color:rgba(55,224,196,.4);}
+  .pcard .flagtag{position:absolute;top:0;right:0;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#06122b;font-size:11px;font-weight:700;padding:5px 12px;border-bottom-left-radius:12px;letter-spacing:.5px;}
+  .pcard h3{font-size:19px;margin-bottom:6px;padding-right:60px;}
+  .pcard .ptype{font-size:12px;color:var(--accent2);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;}
+  .pcard p{color:var(--muted);font-size:14.5px;flex-grow:1;}
+  .pstack{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0;}
+  .pstack .t{font-size:11.5px;color:var(--muted);background:var(--bg-soft);border:1px solid var(--line);padding:4px 9px;border-radius:7px;}
+  .plinks{display:flex;gap:14px;margin-top:auto;padding-top:6px;}
+  .plinks a{font-size:13.5px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:5px;}
+  .plinks a:hover{color:var(--accent2);}
+
+  /* CONTACT */
+  .contact-box{background:linear-gradient(135deg,var(--bg-soft),var(--card));border:1px solid var(--line);border-radius:24px;padding:48px;text-align:center;}
+  .contact-box h2{margin-bottom:10px;}
+  .contact-box p{color:var(--muted);max-width:520px;margin:0 auto 28px;}
+
+  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;color:var(--muted);font-size:13px;}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">JD<span>S</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="glow a"></div>
+  <div class="glow b"></div>
+  <div class="wrap">
+    <div class="badge"><span class="dot"></span> Available for remote work · UTC−4</div>
+    <h1>Juan Diego Salazar<br><span class="grad">Full-Stack &amp; Backend Developer</span></h1>
+    <p class="subtitle">I build web and mobile applications end to end — from real-time APIs and custom algorithms to polished React interfaces. Systems Engineering student at UPSA, Bolivia.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View my work →</a>
+      <a class="btn ghost" href="Juan-Diego-Salazar-CV.pdf" target="_blank">⬇ Download CV</a>
+      <a class="btn ghost" href="https://github.com/Jotade2406" target="_blank">GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/juan-diego-salazar-m%C3%A9ndez-226994318/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">About me</div>
+    <h2>Turning ideas into shipped products</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p>I'm a <strong>Full-Stack Developer</strong> and Systems Engineering student based in Santa Cruz de la Sierra, Bolivia. I love owning a project from the database schema all the way to the user interface.</p>
+        <p>My favorite work lives where engineering gets interesting: <strong>real-time systems</strong> (WebSockets, background jobs), <strong>custom algorithms</strong> (a Dijkstra routing engine over a 27k-node map), and <strong>clean backend architecture</strong> across two ecosystems — <strong>Node.js / NestJS</strong> and <strong>ASP.NET Core</strong>.</p>
+        <p>I'm currently preparing for the <strong>TOEFL</strong> and actively looking for remote opportunities where I can ship production features and keep growing as an engineer.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="row"><span>Location</span><span>Santa Cruz, Bolivia 🇧🇴</span></div>
+        <div class="row"><span>Timezone</span><span>UTC−4</span></div>
+        <div class="row"><span>Focus</span><span>Full-Stack / Backend</span></div>
+        <div class="row"><span>Education</span><span>Systems Eng. — UPSA</span></div>
+        <div class="row"><span>English</span><span>Intermediate–Advanced</span></div>
+        <div class="row"><span>Status</span><span>Open to remote work</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills" style="background:var(--bg-soft);">
+  <div class="wrap">
+    <div class="eyebrow">Tech stack</div>
+    <h2>Skills &amp; tools</h2>
+    <p class="lead">Technologies I've used to build and ship the projects below.</p>
+    <div class="skills">
+      <div class="skill-card reveal">
+        <h3><span class="ic">⚙️</span> Backend</h3>
+        <div class="tags">
+          <span class="tag">NestJS</span><span class="tag">Node.js</span><span class="tag">Express</span>
+          <span class="tag">ASP.NET Core</span><span class="tag">Flask</span><span class="tag">REST APIs</span>
+          <span class="tag">WebSockets</span><span class="tag">BullMQ</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic">🗄️</span> Databases</h3>
+        <div class="tags">
+          <span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span class="tag">Prisma</span>
+          <span class="tag">EF Core</span><span class="tag">Redis</span><span class="tag">Stored procedures</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic">💻</span> Frontend &amp; Mobile</h3>
+        <div class="tags">
+          <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">React Native (Expo)</span>
+          <span class="tag">TypeScript</span><span class="tag">Vite</span><span class="tag">Tailwind CSS</span>
+          <span class="tag">Framer Motion</span><span class="tag">React Query</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic">☁️</span> DevOps &amp; Cloud</h3>
+        <div class="tags">
+          <span class="tag">Git</span><span class="tag">Docker</span><span class="tag">Supabase</span>
+          <span class="tag">Upstash</span><span class="tag">Fly.io</span><span class="tag">Vercel</span>
+          <span class="tag">Gemini API</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic">🧩</span> Languages</h3>
+        <div class="tags">
+          <span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">C#</span>
+          <span class="tag">Python</span><span class="tag">C++</span><span class="tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h3><span class="ic">🌐</span> Systems &amp; Networking</h3>
+        <div class="tags">
+          <span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">Cisco Packet Tracer</span>
+          <span class="tag">OSPF / ACLs / VPNs</span><span class="tag">Tailscale</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Portfolio</div>
+    <h2>Featured projects</h2>
+    <p class="lead">A selection of full-stack, mobile, and systems projects I've designed and built.</p>
+    <div class="projects">
+
+      <div class="pcard flag reveal">
+        <div class="flagtag">★ FLAGSHIP</div>
+        <h3>Billarmania</h3>
+        <div class="ptype">Real-time booking platform</div>
+        <p>A TypeScript monorepo with three apps — a NestJS API, a React admin/accounting dashboard, and a React Native client — sharing a common types package. Real-time reservations via Socket.io, background jobs with BullMQ + Redis, JWT auth, deposit flows, inventory and push notifications.</p>
+        <div class="pstack">
+          <span class="t">NestJS</span><span class="t">Prisma</span><span class="t">PostgreSQL</span><span class="t">Socket.io</span><span class="t">BullMQ</span><span class="t">React Native</span><span class="t">React + Vite</span>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/Jotade2406/Billarmania" target="_blank">⟨ ⟩ Code</a>
+        </div>
+      </div>
+
+      <div class="pcard reveal">
+        <h3>Autigres</h3>
+        <div class="ptype">Ride-sharing platform</div>
+        <p>A ride-sharing mobile app for Santa Cruz, backed by an ASP.NET Core 8 API built with Clean Architecture and deployed on Fly.io. Features a custom routing engine: Dijkstra over an in-memory OpenStreetMap graph (27k nodes / 29k edges) returning routes in sub-millisecond time — no Google Maps dependency.</p>
+        <div class="pstack">
+          <span class="t">React Native</span><span class="t">ASP.NET Core 8</span><span class="t">EF Core</span><span class="t">MySQL</span><span class="t">Dijkstra / OSM</span><span class="t">Fly.io</span>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/Jotade2406/Autigres" target="_blank">⟨ ⟩ Code</a>
+        </div>
+      </div>
+
+      <div class="pcard reveal">
+        <h3>SRE Analytics Dashboard</h3>
+        <div class="ptype">Statistical analysis</div>
+        <p>A platform that ingests server latency logs and computes advanced statistics — Poisson distributions, confidence intervals, and Welch's t-test. Includes a load generator producing realistic traffic via a Box-Muller normal distribution, all visualized in a live interactive dashboard.</p>
+        <div class="pstack">
+          <span class="t">Node.js</span><span class="t">Express</span><span class="t">MySQL</span><span class="t">React 19</span><span class="t">Recharts</span><span class="t">jstat</span>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/Jotade2406/SreAnalytics" target="_blank">⟨ ⟩ Code</a>
+        </div>
+      </div>
+
+      <div class="pcard reveal">
+        <h3>FestCine</h3>
+        <div class="ptype">Film festival management</div>
+        <p>A relational database system for an international film festival: a normalized schema of 32 tables (3NF) exposed exclusively through views and stored procedures — no embedded SQL. Paired with a Flask client for catalog, scheduling, ticketing, juries, and sponsorships.</p>
+        <div class="pstack">
+          <span class="t">MySQL 8</span><span class="t">Python</span><span class="t">Flask</span><span class="t">Stored procedures</span><span class="t">3NF modeling</span>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/Jotade2406/FestCine" target="_blank">⟨ ⟩ Code</a>
+        </div>
+      </div>
+
+      <div class="pcard reveal">
+        <h3>ViorelsMotors</h3>
+        <div class="ptype">AI-enhanced web app</div>
+        <p>A premium, animated marketing site for an auto repair shop, with an Express backend and Google Gemini AI integration. Focused on motion design, performance, and a fully responsive layout.</p>
+        <div class="pstack">
+          <span class="t">React</span><span class="t">Vite</span><span class="t">Express</span><span class="t">Gemini API</span><span class="t">Framer Motion</span>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/Jotade2406/ViorelsMotorsV2" target="_blank">⟨ ⟩ Code</a>
+        </div>
+      </div>
+
+      <div class="pcard reveal">
+        <h3>Algorithms &amp; Data Structures</h3>
+        <div class="ptype">Computer science · C++</div>
+        <p>A set of academic deep-dives in C++: a comparative performance analysis of advanced data structures across multiple languages, graph algorithms, and a deterministic finite automaton (DFA) engine.</p>
+        <div class="pstack">
+          <span class="t">C++</span><span class="t">Graphs</span><span class="t">Automata (DFA)</span><span class="t">Benchmarking</span>
+        </div>
+        <div class="plinks">
+          <a href="https://github.com/Jotade2406/EstructuraDatosAvanzadaFinal" target="_blank">⟨ ⟩ Code</a>
+          <a href="https://github.com/Jotade2406?tab=repositories" target="_blank">More ↗</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <div class="eyebrow">Get in touch</div>
+      <h2>Let's build something together</h2>
+      <p>I'm open to remote Full-Stack and Backend roles, freelance projects, and collaborations. Feel free to reach out — I usually reply within a day.</p>
+      <div class="cta" style="justify-content:center;">
+        <a class="btn primary" href="mailto:juandiegosalazarm15@gmail.com">✉ Email me</a>
+        <a class="btn ghost" href="https://wa.me/59167972211" target="_blank">WhatsApp</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/juan-diego-salazar-m%C3%A9ndez-226994318/" target="_blank">LinkedIn</a>
+        <a class="btn ghost" href="https://github.com/Jotade2406" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Juan Diego Salazar Mendez · Built with HTML &amp; CSS · Santa Cruz de la Sierra, Bolivia</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
